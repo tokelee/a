@@ -1,6 +1,5 @@
 from flask import Flask
 from flask_mail import Mail
-from flask_sqlalchemy import SQLAlchemy
 
 
 
@@ -8,7 +7,6 @@ app = Flask(__name__, static_folder='./static')
 
 app.secret_key = "edeacda59ac156398eb419c6b1ba496a5b8d0250cbf6f09299"
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587

